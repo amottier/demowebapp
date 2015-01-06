@@ -1,0 +1,186 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Archetype Created Web Application</display-name>
+
+
+	<filter>
+		<filter-name>SpnegoHttpFilter</filter-name>
+		<filter-class>net.sourceforge.spnego.SpnegoHttpFilter</filter-class>
+
+		<init-param>
+			<param-name>spnego.allow.basic</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.allow.localhost</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.allow.unsecure.basic</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.login.client.module</param-name>
+			<param-value>spnego-client</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.krb5.conf</param-name>
+			<param-value>krb5.conf</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.login.conf</param-name>
+			<param-value>login.conf</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.preauth.username</param-name>
+			<param-value>amottier</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.preauth.password</param-name>
+			<param-value>Password2</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.login.server.module</param-name>
+			<param-value>spnego-server</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.prompt.ntlm</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>spnego.logger.level</param-name>
+			<param-value>1</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SpnegoHttpFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- Single Sign Out -->
+	<!-- <filter> -->
+	<!-- <filter-name>CAS Single Sign Out Filter</filter-name> -->
+	<!-- <filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class> -->
+	<!-- </filter> -->
+
+	<!-- The AuthenticationFilter is what detects whether a user needs to be 
+		authenticated or not. If a user needs to be authenticated, it will redirect 
+		the user to the CAS server. -->
+	<!-- <filter> -->
+	<!-- <filter-name>CAS Authentication Filter</filter-name> -->
+	<!-- <filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class> -->
+	<!-- <init-param> -->
+	<!-- <param-name>casServerLoginUrl</param-name> -->
+	<!-- <param-value>https://localhost:8443/cas-server-webapp-3.5.0/login</param-value> -->
+	<!-- </init-param> -->
+	<!-- <init-param> -->
+	<!-- <param-name>serverName</param-name> -->
+	<!-- <param-value>https://localhost:8443</param-value> -->
+	<!-- </init-param> -->
+	<!-- </filter> -->
+
+	<!-- Validates tickets using the CAS 1.0 Protocol. -->
+	<!-- <filter> -->
+	<!-- <filter-name>CAS Validation Filter</filter-name> -->
+	<!-- <filter-class>org.jasig.cas.client.validation.Cas10TicketValidationFilter</filter-class> -->
+	<!-- <init-param> -->
+	<!-- <param-name>casServerUrlPrefix</param-name> -->
+	<!-- <param-value>https://localhost:8443/cas-server-webapp-3.5.0</param-value> -->
+	<!-- </init-param> -->
+	<!-- <init-param> -->
+	<!-- <param-name>serverName</param-name> -->
+	<!-- <param-value>https://localhost:8443</param-value> -->
+	<!-- </init-param> -->
+	<!-- </filter> -->
+
+	<!-- Wraps an HttpServletRequest so that the getRemoteUser and getPrincipal 
+		return the CAS related entries. -->
+	<!-- <filter> -->
+	<!-- <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name> -->
+	<!-- <filter-class>org.jasig.cas.client.util.HttpServletRequestWrapperFilter</filter-class> -->
+	<!-- </filter> -->
+
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>CAS Single Sign Out Filter</filter-name> -->
+	<!-- <url-pattern>/*</url-pattern> -->
+	<!-- </filter-mapping> -->
+
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>CAS Authentication Filter</filter-name> -->
+	<!-- <url-pattern>/*</url-pattern> -->
+	<!-- </filter-mapping> -->
+
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>CAS Validation Filter</filter-name> -->
+	<!-- <url-pattern>/*</url-pattern> -->
+	<!-- </filter-mapping> -->
+
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name> -->
+	<!-- <url-pattern>/*</url-pattern> -->
+	<!-- </filter-mapping> -->
+
+	<!-- <listener> -->
+	<!-- <listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class> -->
+	<!-- </listener> -->
+
+	<servlet>
+		<servlet-name>test-servlet</servlet-name>
+		<servlet-class>org.bonitasoft.demowebapp.TestServlet</servlet-class>
+	</servlet>
+
+	<!-- <servlet> -->
+	<!-- <servlet-name>StartThreadServlet</servlet-name> -->
+	<!-- <servlet-class>org.bonitasoft.demowebapp.StartThreadServlet</servlet-class> -->
+	<!-- </servlet> -->
+
+	<!-- <servlet> -->
+	<!-- <servlet-name>StopThreadServlet</servlet-name> -->
+	<!-- <servlet-class>org.bonitasoft.demowebapp.StopThreadServlet</servlet-class> -->
+	<!-- </servlet> -->
+
+	<!-- <servlet> -->
+	<!-- <servlet-name>LongRunningServlet</servlet-name> -->
+	<!-- <servlet-class>org.bonitasoft.demowebapp.LongRunningServlet</servlet-class> -->
+	<!-- </servlet> -->
+
+	<servlet-mapping>
+		<servlet-name>test-servlet</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>StartThreadServlet</servlet-name> -->
+	<!-- <url-pattern>/start-thread-servlet</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>StopThreadServlet</servlet-name> -->
+	<!-- <url-pattern>/stop-thread-servlet</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>LongRunningServlet</servlet-name> -->
+	<!-- <url-pattern>/long-running-servlet</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+
+
+
+
+</web-app>
